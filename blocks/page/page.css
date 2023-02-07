@@ -1,0 +1,9 @@
+.body {
+    background-color: #000;
+}
+
+.mainframe {
+    margin: 45px auto 60px;
+    padding: 0px 200px 0px;
+    max-width: 880px;
+}

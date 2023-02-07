@@ -1,0 +1,108 @@
+.popup {
+    box-sizing: border-box;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, .5);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 19px;
+}
+
+.popup__container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    padding: 36px;
+    background-color: white;
+    border-radius: 10px;
+    width: 430px;
+    max-height: 100%;
+}
+
+.popup__close {
+    width: 32px;
+    height: 32px;
+    position: absolute;
+    right: -40px;
+    top: -40px;
+    background-image: url(../../images/closeicon.png);
+    background-color: transparent;
+    box-sizing: border-box;
+    background-repeat: no-repeat;
+    background-size: contain;
+    border: none;
+    cursor: pointer;
+}
+
+.popup__title {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 900;
+    font-size: 24px;
+    line-height: 29px;
+    color: #000000;
+    margin: 0px 0px 54px;
+}
+
+.popup__name-change {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 17px;
+    color: #000000;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: 1px solid #f1f1f1;
+    padding-bottom: 13px;
+}
+
+.popup__name-change::placeholder {
+    color: black;
+}
+
+.popup__description-change {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 17px;
+    color: #000000;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: 1px solid #f1f1f1;
+    padding-bottom: 13px;
+    margin: 30px 0px 48px;
+}
+
+.popup__description-change::placeholder {
+    color: black;
+}
+
+.popup_opened {
+    display: flex;
+}
+
+.popup__confirm {
+    background-color: #000000;
+    width: 358px;
+    height: 50px;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 22px;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    color: #FFFFFF;
+    cursor: pointer;
+    border: none;
+    border-radius: 2px;
+}

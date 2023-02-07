@@ -5,11 +5,71 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link rel="stylesheet" href="pages/index.css">
+    <title>Mesto</title>
 </head>
 
-<body>
+<body class="body">
+    <div class="mainframe">
+        <header class="header">
+            <div class="header__logo"></div>
+            <div class="header__line"></div>
+        </header>
+        <section class="profile">
+            <div class="profile__about">
+                <img src="images/avatar.png" alt="Аватар" class="profile__avatar">
+                <div class="profile__info">
+                    <div class="profile__name">Жирный</div>
+                    <p class="profile__description">как поезд пассажирный</p>
+                </div>
+                <div href="#" class="profile__edit">
+                    <button href="#" class="profile__edit-button">
 
+                    </button>
+                </div>
+            </div>
+            <div class="profile__add">+</div>
+        </section>
+        <section class="elements">
+            <div class="element">
+                <img class="element__image" src="images/1.jpg">
+                <div class="element__description">1233124124121251251251245</div>
+            </div>
+            <div class="element">
+                <img class="element__image" src="images/2.jpg">
+                <div class="element__description">12345</div>
+            </div>
+            <div class="element">
+                <img class="element__image" src="images/3.jpg">
+                <div class="element__description">12345</div>
+            </div>
+            <div class="element">
+                <img class="element__image" src="images/4.jpg">
+                <div class="element__description">12345</div>
+            </div>
+            <div class="element">
+                <img class="element__image" src="images/5.jpg">
+                <div class="element__description">12345</div>
+            </div>
+            <div class="element">
+                <img class="element__image" src="images/6.png">
+                <div class="element__description">12345</div>
+            </div>
+        </section>
+        <section class="footer">
+            <p class="footer__copyright">© 2023 Mesto Russia</p>
+        </section>
+    </div>
+    <section class="popup">
+        <div class="popup__container">
+            <h2 class="popup__title">Редактировать профиль</h2>
+            <input type="text" class="popup__name-change">
+            <input type="text" class="popup__description-change">
+            <button class="popup__close"></button>
+            <button class="popup__confirm">Сохранить</button>
+        </div>
+    </section>
+    <script src="script/index.js"></script>
 </body>
 
 </html>
