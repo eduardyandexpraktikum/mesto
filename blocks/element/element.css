@@ -1,27 +1,7 @@
 .element {
     height: 361px;
+    max-width: 282px;
     background-color: white;
     border-radius: 10px;
-    overflow: hidden;
-}
-
-.element__image {
-    height: 282px;
-    width: 282px;
-    object-fit: cover;
-}
-
-.element__description {
-    font-family: 'Inter';
-    font-style: normal;
-    font-weight: 900;
-    font-size: 24px;
-    line-height: 29px;
-    color: #000000;
-    height: 79px;
-    padding: 25px 0px 0px;
-    margin-left: 21px;
-    text-overflow: ellipsis;
-    white-space: nowrap;
     overflow: hidden;
 }

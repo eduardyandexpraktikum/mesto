@@ -7,3 +7,15 @@
     padding: 0px 200px 0px;
     max-width: 880px;
 }
+
+@media screen and (max-width: 1280px) {
+    .mainframe {
+        padding: 0px 20px 0px;
+    }
+}
+
+@media screen and (max-width: 621px) {
+    .mainframe {
+        margin-bottom: 36px;
+    }
+}

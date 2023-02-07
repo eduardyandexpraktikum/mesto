@@ -1,0 +1,17 @@
+.popup__name-change {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 17px;
+    color: #000000;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: 1px solid #f1f1f1;
+    padding-bottom: 13px;
+}
+
+.popup__name-change::placeholder {
+    color: black;
+}
