@@ -2,16 +2,18 @@
     position: relative;
     display: flex;
     flex-direction: column;
-    padding: 36px;
+    padding: 34px 36px 36px;
     background-color: white;
     border-radius: 10px;
-    width: 430px;
+    max-width: 430px;
     max-height: 100%;
+    top: -103px;
 }
 
 @media screen and (max-width: 621px) {
     .popup__container {
         padding: 25px 22px 25px;
         max-width: 282px;
+        top: -163px;
     }
 }

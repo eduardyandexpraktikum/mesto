@@ -1,5 +1,5 @@
 .popup__description-change {
-    font-family: 'Inter';
+    font-family: 'Inter', 'Arial', sans-serif;
     font-style: normal;
     font-weight: 400;
     font-size: 14px;
@@ -15,4 +15,11 @@
 
 .popup__description-change::placeholder {
     color: black;
+}
+
+@media screen and (max-width: 621px) {
+    .popup__description-change {
+        padding: 0px 0px 9px;
+        margin-bottom: 44px;
+    }
 }

@@ -10,7 +10,7 @@
 </head>
 
 <body class="body">
-    <div class="mainframe">
+    <div class="body__mainframe">
         <header class="header">
             <div class="header__logo"></div>
             <div class="header__line"></div>
@@ -21,52 +21,52 @@
                 <div class="profile__info">
                     <div class="profile__namebox">
                         <h1 class="profile__name">Жирный</h1>
-                        <button href="#" class="profile__edit-button">
+                        <button type="button" class="profile__edit-button">
                         </button>
                     </div>
                     <p class="profile__description">как поезд пассажирный</p>
                 </div>
             </div>
-            <div class="profile__add">+</div>
+            <button type="button" class="profile__add"></button>
         </section>
         <section class="elements">
             <div class="element">
-                <img class="element__image" src="images/1.jpg">
+                <img class="element__image" src="images/1.jpg" alt="Первый пост">
                 <div class="element__caption">
                     <div class="element__description">1233124124121251251251245</div>
                     <img src="./images/like.svg" alt="Лайк" class="element__like">
                 </div>
             </div>
             <div class="element">
-                <img class="element__image" src="images/2.jpg">
+                <img class="element__image" src="images/2.jpg" alt="Второй пост">
                 <div class="element__caption">
                     <div class="element__description">12345</div>
                     <img src="./images/like.svg" alt="Лайк" class="element__like">
                 </div>
             </div>
             <div class="element">
-                <img class="element__image" src="images/3.jpg">
+                <img class="element__image" src="images/3.jpg" alt="Третий пост">
                 <div class="element__caption">
                     <div class="element__description">12345</div>
                     <img src="./images/like.svg" alt="Лайк" class="element__like">
                 </div>
             </div>
             <div class="element">
-                <img class="element__image" src="images/4.jpg">
+                <img class="element__image" src="images/4.jpg" alt="Четвертый пост">
                 <div class="element__caption">
                     <div class="element__description">12345</div>
                     <img src="./images/like.svg" alt="Лайк" class="element__like">
                 </div>
             </div>
             <div class="element">
-                <img class="element__image" src="images/5.jpg">
+                <img class="element__image" src="images/5.jpg" alt="Пятый пост">
                 <div class="element__caption">
                     <div class="element__description">12345</div>
                     <img src="./images/like.svg" alt="Лайк" class="element__like">
                 </div>
             </div>
             <div class="element">
-                <img class="element__image" src="images/6.png">
+                <img class="element__image" src="images/6.png" alt="Шестой пост">
                 <div class="element__caption">
                     <div class="element__description">12345</div>
                     <img src="./images/like.svg" alt="Лайк" class="element__like">
@@ -78,13 +78,13 @@
         </section>
     </div>
     <section class="popup">
-        <div class="popup__container">
+        <form class="popup__container">
             <h2 class="popup__title">Редактировать профиль</h2>
             <input type="text" class="popup__name-change">
             <input type="text" class="popup__description-change">
-            <button class="popup__close"></button>
+            <button type="button" class="popup__close"></button>
             <button class="popup__confirm">Сохранить</button>
-        </div>
+        </form>
     </section>
     <script src="script/index.js"></script>
 </body>
