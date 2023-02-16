@@ -1,12 +1,12 @@
 .profile__name {
     padding: 0px;
-    margin: 0px 0px 16px;
     font-family: 'Inter', 'Arial', sans-serif;
     font-style: normal;
     font-weight: 500;
     font-size: 42px;
     line-height: 1.14;
     color: #FFFFFF;
+    margin: 0px;
 }
 
 @media screen and (max-width: 621px) {
@@ -14,6 +14,5 @@
         font-size: 27px;
         letter-spacing: 0em;
         text-align: center;
-        margin-bottom: 8px;
     }
 }

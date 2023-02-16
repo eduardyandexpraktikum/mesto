@@ -1,4 +1,4 @@
-.popup__description-change {
+.popup__inputs {
     font-family: 'Inter', 'Arial', sans-serif;
     font-style: normal;
     font-weight: 400;
@@ -9,16 +9,24 @@
     border-left: none;
     border-right: none;
     border-bottom: 1px solid #f1f1f1;
+    width: 358px;
+}
+
+.popup__inputs::placeholder {
+    color: black;
+}
+
+.popup__inputs:first-of-type {
+    padding: 0px 0px 9px;
+}
+
+.popup__inputs:last-of-type {
     padding-bottom: 13px;
     margin: 30px 0px 48px;
 }
 
-.popup__description-change::placeholder {
-    color: black;
-}
-
 @media screen and (max-width: 621px) {
-    .popup__description-change {
+    .popup__inputs:last-of-type {
         padding: 0px 0px 9px;
         margin-bottom: 44px;
     }
