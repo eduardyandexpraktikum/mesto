@@ -12,6 +12,7 @@
 
 @media screen and (max-width: 621px) {
     .body__mainframe {
-        margin-bottom: 36px;
+        margin: 28px auto 36px;
+        padding: 0px;
     }
 }

@@ -5,8 +5,8 @@ const closePopup = document.querySelector('.popup__close');
 let formElement = document.querySelector('.popup__form');
 let nameLabel = document.querySelector('.profile__name');
 let descriptionLabel = document.querySelector('.profile__description');
-let nameChange = document.querySelector('.popup__inputs:first-of-type');
-let descriptionChange = document.querySelector('.popup__inputs:last-of-type');
+let nameChange = document.querySelector('.popup__inputs_name');
+let descriptionChange = document.querySelector('.popup__inputs_description');
 
 const togglePopupEdit = () => {
     popup.classList.toggle('popup_opened');
@@ -19,10 +19,10 @@ const handleEditButtonClick = () => {
 }
 
 function handleFormSubmit(evt) {
+    evt.preventDefault();
     togglePopupEdit();
     nameLabel.textContent = nameChange.value;
     descriptionLabel.textContent = descriptionChange.value;
-    evt.preventDefault();
 }
 
 formElement.addEventListener('submit', handleFormSubmit);

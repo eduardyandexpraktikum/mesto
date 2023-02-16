@@ -16,18 +16,10 @@
     color: black;
 }
 
-.popup__inputs:first-of-type {
-    padding: 0px 0px 9px;
-}
-
-.popup__inputs:last-of-type {
-    padding-bottom: 13px;
-    margin: 30px 0px 48px;
-}
 
 @media screen and (max-width: 621px) {
-    .popup__inputs:last-of-type {
-        padding: 0px 0px 9px;
-        margin-bottom: 44px;
+
+    .popup__inputs {
+        width: 238px;
     }
 }

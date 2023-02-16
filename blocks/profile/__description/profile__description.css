@@ -13,6 +13,18 @@
     max-width: 520px;
 }
 
+@media screen and (max-width: 920px) {
+    .profile__description {
+        max-width: 400px;
+    }
+}
+
+@media screen and (max-width: 800px) {
+    .profile__description {
+        max-width: 250px;
+    }
+}
+
 @media screen and (max-width: 621px) {
     .profile__description {
         font-size: 14px;
@@ -20,5 +32,6 @@
         letter-spacing: 0em;
         text-align: center;
         margin-top: 8px;
+        max-width: 250px;
     }
 }
