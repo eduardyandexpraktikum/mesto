@@ -5,8 +5,8 @@ const closePopup = document.querySelector('.popup__close');
 let formElement = document.querySelector('.popup__form');
 let nameLabel = document.querySelector('.profile__name');
 let descriptionLabel = document.querySelector('.profile__description');
-let nameChange = document.querySelector('.popup__inputs_name');
-let descriptionChange = document.querySelector('.popup__inputs_description');
+let nameChange = document.querySelector('.popup__inputs_field_name');
+let descriptionChange = document.querySelector('.popup__inputs_field_description');
 
 const togglePopupEdit = () => {
     popup.classList.toggle('popup_opened');
