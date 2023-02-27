@@ -1,6 +1,5 @@
-.popup__container {
+.popupAddItem__container {
     position: relative;
-    top: 32%;
     display: flex;
     flex-direction: column;
     padding: 34px 36px 36px;
@@ -11,8 +10,9 @@
     margin: auto;
 }
 
+
 @media screen and (max-width: 621px) {
-    .popup__container {
+    .popupAddItem__container {
         padding: 25px 22px 25px;
         max-width: 238px;
     }
