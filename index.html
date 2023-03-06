@@ -50,17 +50,17 @@
             <button type="button" class="popup__close"></button>
         </div>
     </div>
-    <div class="popupAddItem">
-        <div class="popupAddItem__container">
-            <form action="#" method="post" name="addItem" class="popupAddItem__form">
-                <h2 class="popupAddItem__title">Новое место</h2>
-                <input type="text" id="addImageName" class="popupAddItem__inputs popupAddItem__inputs_field_name"
+    <div class="popup" id="addPopup">
+        <div class="popup__container">
+            <form action="#" method="post" name="addItem" id='addPopupForm' class="popup__form">
+                <h2 class="popup__title">Новое место</h2>
+                <input type="text" id="addImageName" class="popup__inputs popup__inputs_field_name"
                     placeholder="Название" name="popupAddItem-name">
-                <input type="text" id="addImageLink" class="popupAddItem__inputs popupAddItem__inputs_field_link"
+                <input type="text" id="addImageLink" class="popup__inputs popup__inputs_field_link"
                     placeholder="Ссылка на картинку" name="popupAddItem-link">
-                <button class="popupAddItem__confirm" type="submit">Создать</button>
+                <button class="popup__confirm" type="submit">Создать</button>
             </form>
-            <button type="button" class="popupAddItem__close"></button>
+            <button type="button" class="popup__close" id="addPopupClose"></button>
         </div>
     </div>
     <div class="popupImage">
