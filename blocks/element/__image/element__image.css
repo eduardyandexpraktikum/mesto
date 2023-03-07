@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 .element__image {
     height: 282px;
     width: 282px;
@@ -6,13 +5,5 @@
     object-fit: cover;
     cursor: pointer;
     background-color: black;
-=======
-.element__image {
-    height: 282px;
-    width: 282px;
-    background-size: 282px;
-    object-fit: cover;
-    cursor: pointer;
-    background-color: black;
->>>>>>> a8e1d0b69d844e864cb89c89fb4bdab5c81f189b
+    display: block;
 }
