@@ -29,7 +29,7 @@ const editButton = document.querySelector('.profile__edit-button');
 const popup = document.querySelector('.popup');
 const editPopup = document.querySelector('.popupEdit');
 const closePopup = document.querySelector('.popup__close');
-const closePopupEdit = document.querySelector('.popupEdit__close');
+const buttonClosePopupProfile = document.querySelector('.popupEdit__close');
 const formElement = document.querySelector('.popup__form');
 
 const nameLabel = document.querySelector('.profile__name');
@@ -38,7 +38,7 @@ const nameChange = document.querySelector('.popup__inputs_field_name');
 const descriptionChange = document.querySelector('.popup__inputs_field_description');
 
 const popupAddItem = document.querySelector('.popupAdd');
-const closePopupAddItem = document.querySelector('#addPopupClose');
+const buttonClosePopupAddItem = document.querySelector('#addPopupClose');
 const addButton = document.querySelector('.profile__add');
 const formAdd = document.querySelector('#addPopupForm');
 
@@ -47,7 +47,7 @@ const template = document.querySelector('.newElement');
 const imagePopup = document.querySelector('.popupImage');
 const imagePopupPic = document.querySelector('.popupImage__pic');
 const imagePopupDescription = document.querySelector('.popupImage__description');
-const closeImagePopup = document.querySelector('.popupImage__close');
+const buttonCloseImagePopup = document.querySelector('.popupImage__close');
 const nameAdd = document.querySelector('#addImageName');
 const linkAdd = document.querySelector('#addImageLink');
 
@@ -70,7 +70,7 @@ const addCards = (item) => {
         imagePopupPic.src = newCardLink.src;
         imagePopupPic.alt = item.name;
         imagePopupDescription.textContent = newCardName.textContent;
-        imagePopup.classList.add('popup_opened');
+        popupOpen(imagePopup);
     });
 
     return newCard;
@@ -93,8 +93,8 @@ const addElement = (evt) => {
     popupClose(popupAddItem);
 };
 
-closeImagePopup.addEventListener('click', function (evt) {
-    imagePopup.classList.remove('popup_opened');
+buttonCloseImagePopup.addEventListener('click', function (evt) {
+    popupClose(imagePopup);
 });
 
 
@@ -121,11 +121,11 @@ const popupClose = (spot) => {
 
 formElement.addEventListener('submit', handleEditFormSubmit);
 editButton.addEventListener('click', handleEditButtonClick);
-closePopupEdit.addEventListener('click', () => {
+buttonClosePopupProfile.addEventListener('click', () => {
     popupClose(editPopup);
 });
 
-closePopupAddItem.addEventListener('click', () => {
+buttonClosePopupAddItem.addEventListener('click', () => {
     popupClose(popupAddItem);
 });
 
