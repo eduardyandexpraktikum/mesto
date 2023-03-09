@@ -37,9 +37,9 @@
             <p class="footer__copyright">© 2023 Mesto Russia</p>
         </footer>
     </div>
-    <div class="popup">
-        <div class="popup__container">
-            <form action="#" method="post" name="change-name" class="popup__form">
+    <div class="popup popupEdit">
+        <div class="popup__container popupEdit__container">
+            <form action="#" method="post" name="change-name" class="popup__form popupEdit__form">
                 <h2 class="popup__title">Редактировать профиль</h2>
                 <input type="text" id="name_change" class="popup__inputs popup__inputs_field_name" placeholder="Имя"
                     name="popup-name">
@@ -47,23 +47,23 @@
                     placeholder="О себе" name="popup-description">
                 <button class="popup__confirm" type="submit">Сохранить</button>
             </form>
-            <button type="button" class="popup__close"></button>
+            <button type="button" class="popup__close popupEdit__close"></button>
         </div>
     </div>
-    <div class="popupAddItem">
-        <div class="popupAddItem__container">
-            <form action="#" method="post" name="addItem" class="popupAddItem__form">
-                <h2 class="popupAddItem__title">Новое место</h2>
-                <input type="text" id="addImageName" class="popupAddItem__inputs popupAddItem__inputs_field_name"
+    <div class="popup popupAdd" id="addPopup">
+        <div class="popup__container popupAdd__container">
+            <form action="#" method="post" name="addItem" id='addPopupForm' class="popup__form popupAdd__form">
+                <h2 class="popup__title">Новое место</h2>
+                <input type="text" id="addImageName" class="popup__inputs popup__inputs_field_name"
                     placeholder="Название" name="popupAddItem-name">
-                <input type="text" id="addImageLink" class="popupAddItem__inputs popupAddItem__inputs_field_link"
+                <input type="text" id="addImageLink" class="popup__inputs popup__inputs_field_link"
                     placeholder="Ссылка на картинку" name="popupAddItem-link">
-                <button class="popupAddItem__confirm" type="submit">Создать</button>
+                <button class="popup__confirm" type="submit">Создать</button>
             </form>
-            <button type="button" class="popupAddItem__close"></button>
+            <button type="button" class="popup__close" id="addPopupClose"></button>
         </div>
     </div>
-    <div class="popupImage">
+    <div class="popup popupImage">
         <div class="popupImage__container">
             <img src="images/1.jpg" alt="Описание" class="popupImage__pic">
             <p class="popupImage__description">123</p>
@@ -72,7 +72,7 @@
     </div>
     <template class="newElement">
         <article class="element">
-            <img class="element__image" src="" alt="">
+            <img class="element__image" src="#" alt="заглушка текста">
             <button class="element__bin" type="button">
                 <img src="./images/bin.svg" id="bin" alt="Удалить">
             </button>
@@ -83,7 +83,7 @@
             </div>
         </article>
     </template>
-    <script src="script/index.js"></script>
+    <script type="module" src="script/index.js"></script>
 </body>
 
 </html>
