@@ -1,4 +1,4 @@
-.popupAddItem__close {
+.popupImage__close {
     width: 32px;
     height: 32px;
     position: absolute;
@@ -13,12 +13,12 @@
     cursor: pointer;
 }
 
-.popupAddItem__close:hover {
+.popupImage__close:hover {
     opacity: 0.6;
 }
 
 @media screen and (max-width: 621px) {
-    .popupAddItem__close {
+    .popupImage__close {
         width: 20px;
         height: 20px;
         right: 0;

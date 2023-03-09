@@ -106,4 +106,4 @@ addButton.addEventListener('click', () => {
     popupOpen(popupAddItem);
 });
 
-formAdd.addEventListener('submit', addElement); 
+formAdd.addEventListener('submit', addElement);
