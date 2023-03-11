@@ -107,6 +107,7 @@ addButton.addEventListener('click', () => {
     linkAdd.value = '';
     openPopup(popupAddItem);
     buttonAddItem.classList.add(options.disabledButtonClass);
+    buttonAddItem.setAttribute('disabled', true);
 });
 
 formAdd.addEventListener('submit', addElement);
