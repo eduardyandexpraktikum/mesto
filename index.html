@@ -39,14 +39,19 @@
     </div>
     <div class="popup popupEdit">
         <div class="popup__container popupEdit__container">
-            <form action="#" method="post" name="change-name" class="popup__form popupEdit__form">
-                <h2 class="popup__title">Редактировать профиль</h2>
-                <input type="text" id="name_change" class="popup__inputs popup__inputs_field_name" placeholder="Имя"
-                    name="popup-name" required>
-                <span></span>
-                <input type="text" id="description_change" class="popup__inputs popup__inputs_field_description"
-                    placeholder="О себе" name="popup-description" required>
-                <span></span>
+            <h2 class="popup__title">Редактировать профиль</h2>
+            <form action="#" method="post" name="change-name" class="popup__form popupEdit__form" autocomplete="on"
+                novalidate>
+                <div class="popup__inputSection">
+                    <input type="text" id="name_change" class="popup__inputs popup__inputs_field_name" placeholder="Имя"
+                        name="popup-name" minlength="2" maxlength="40" required>
+                    <span class="popup__input-error"></span>
+                </div>
+                <div class="popup__inputSection">
+                    <input type="text" id="description_change" class="popup__inputs popup__inputs_field_description"
+                        placeholder="О себе" name="popup-description" minlength="2" maxlength="200" required>
+                    <span class="popup__input-error"></span>
+                </div>
                 <button class="popup__confirm" type="submit">Сохранить</button>
             </form>
             <button type="button" class="popup__close popupEdit__close"></button>
@@ -54,12 +59,19 @@
     </div>
     <div class="popup popupAdd" id="addPopup">
         <div class="popup__container popupAdd__container">
-            <form action="#" method="post" name="addItem" id='addPopupForm' class="popup__form popupAdd__form">
-                <h2 class="popup__title">Новое место</h2>
-                <input type="text" id="addImageName" class="popup__inputs popup__inputs_field_name"
-                    placeholder="Название" name="popupAddItem-name">
-                <input type="text" id="addImageLink" class="popup__inputs popup__inputs_field_link"
-                    placeholder="Ссылка на картинку" name="popupAddItem-link">
+            <h2 class="popup__title">Новое место</h2>
+            <form action="#" method="post" name="addItem" id='addPopupForm' class="popup__form popupAdd__form"
+                autocomplete="on" novalidate>
+                <div class="popup__inputSection">
+                    <input type="text" id="addImageName" class="popup__inputs popup__inputs_field_name"
+                        placeholder="Название" name="popupAddItem-name" minlength="2" maxlength="30" required>
+                    <span class="popup__input-error"></span>
+                </div>
+                <div class="popup__inputSection">
+                    <input type="url" id="addImageLink" class="popup__inputs popup__inputs_field_link"
+                        placeholder="Ссылка на картинку" name="popupAddItem-link" required>
+                    <span class="popup__input-error"></span>
+                </div>
                 <button class="popup__confirm" type="submit">Создать</button>
             </form>
             <button type="button" class="popup__close" id="addPopupClose"></button>
@@ -85,6 +97,7 @@
             </div>
         </article>
     </template>
+    <script src="script/validate.js"></script>
     <script src="script/feed.js"></script>
     <script src="script/index.js"></script>
 </body>
