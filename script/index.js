@@ -1,3 +1,7 @@
+import { initialCards } from './feed.js';
+import { Card } from './Card.js';
+import { FormValidator } from './FormValidator.js';
+
 const editButton = document.querySelector('.profile__edit-button');
 const popup = document.querySelector('.popup');
 const popups = Array.from(document.querySelectorAll('.popup'));
@@ -17,16 +21,18 @@ const buttonAddItem = popupAddItem.querySelector('#buttonAddItem');
 const buttonClosePopupAddItem = document.querySelector('#addPopupClose');
 const addButton = document.querySelector('.profile__add');
 const formAdd = document.querySelector('#addPopupForm');
+const formEdit = document.querySelector('#editPopupForm')
 
 const feed = document.querySelector('.elements');
 const template = document.querySelector('.newElement');
-const imagePopup = document.querySelector('.popupImage');
-const imagePopupPic = document.querySelector('.popupImage__pic');
-const imagePopupDescription = document.querySelector('.popupImage__description');
+export const imagePopup = document.querySelector('.popupImage');
+export const imagePopupPic = document.querySelector('.popupImage__pic');
+export const imagePopupDescription = document.querySelector('.popupImage__description');
 const buttonCloseImagePopup = document.querySelector('.popupImage__close');
 const nameAdd = document.querySelector('#addImageName');
 const linkAdd = document.querySelector('#addImageLink');
 
+/*
 const addCards = (item) => {
     const newCard = template.content.querySelector('.element').cloneNode(true);
     const newCardName = newCard.querySelector('.element__description');
@@ -55,14 +61,12 @@ const elementFeed = initialCards.map(addCards);
 
 elementFeed.forEach(element => {
     feed.prepend(element)
-});
+}); */
 
 const addElement = (evt) => {
     evt.preventDefault();
-    const cardAddingObject = {};
-    cardAddingObject.name = nameAdd.value;
-    cardAddingObject.link = linkAdd.value;
-    feed.prepend(addCards(cardAddingObject));
+    const addNewCard = new Card(nameAdd.value, linkAdd.value);
+    feed.prepend(addNewCard.render());
     evt.target.reset();
     closePopup(popupAddItem);
 };
@@ -84,7 +88,7 @@ function handleEditFormSubmit(evt) {
     closePopup(editPopup);
 }
 
-const openPopup = (spot) => {
+export const openPopup = (spot) => {
     spot.classList.add('popup_opened');
     document.addEventListener('keydown', closeByEscape);
 }
@@ -137,4 +141,8 @@ const options = {
     inputErrorClass: 'popup__input-error_active'
 }
 
-enableValidation(options);
+const validationAddForm = new FormValidator(options, formAdd);
+validationAddForm.enableValidation();
+
+const validationEditForm = new FormValidator(options, formEdit);
+validationEditForm.enableValidation();

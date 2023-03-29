@@ -1,4 +1,4 @@
-const hideError = (errorElement, inputErrorClass) => {
+/* const hideError = (errorElement, inputErrorClass) => {
     errorElement.textContent = '';
     errorElement.classList.remove(inputErrorClass);
 };
@@ -60,3 +60,5 @@ const enableValidation = (options) => {
         setEventListeners(form, options);
     });
 };
+
+*/
