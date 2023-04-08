@@ -1,7 +1,7 @@
-import { initialCards } from './feed.js'
 import { openPopup, imagePopup, imagePopupPic, imagePopupDescription } from './index.js'
 
 export class Card {
+
     constructor(name, link) {
         this._name = name;
         this._link = link;
@@ -34,18 +34,23 @@ export class Card {
         });
     }
 
-    render() {
+    createCard(name, link) {
+        this._element = this._getTemplate();
+        this._element.querySelector('.element__description').textContent = name;
+        const cardImage = this._element.querySelector('.element__image');
+        cardImage.src = link;
+        cardImage.alt = name;
+        this._setListeners();
+        return this._element;
+    }
+
+    generate() {
         this._element = this._getTemplate();
         this._element.querySelector('.element__description').textContent = this._name;
-        this._element.querySelector('.element__image').src = this._link;
-        this._element.querySelector('.element__image').alt = this._name;
+        const cardImage = this._element.querySelector('.element__image');
+        cardImage.src = this._link;
+        cardImage.alt = this._name;
         this._setListeners();
         return this._element;
     }
 }
-
-initialCards.forEach((item) => {
-    const card = new Card(item.name, item.link);
-    const cardElement = card.render();
-    document.querySelector('.elements').prepend(cardElement);
-});
