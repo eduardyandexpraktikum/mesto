@@ -28,9 +28,14 @@ const buttonCloseImagePopup = document.querySelector('.popupImage__close');
 const nameAdd = document.querySelector('#addImageName');
 const linkAdd = document.querySelector('#addImageLink');
 
+const createCard = (name, link) => {
+    const card = new Card(name, link);
+    return card.generate();
+}
+
 const addElement = (evt) => {
     evt.preventDefault();
-    feed.prepend(new Card().createCard(nameAdd.value, linkAdd.value));
+    feed.prepend(createCard(nameAdd.value, linkAdd.value));
     closePopup(popupAddItem);
 };
 
