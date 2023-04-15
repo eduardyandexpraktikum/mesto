@@ -1,6 +1,11 @@
 import { initialCards } from './feed.js';
 import { Card } from './Card.js';
 import { FormValidator } from './FormValidator.js';
+import { Section } from './Section.js';
+import { Popup } from './Popup.js';
+import { PopupWithForm } from './PopupWithForm.js';
+import { PopupWithImage } from './PopupWithImage.js';
+import { UserInfo } from './UserInfo.js';
 
 const editButton = document.querySelector('.profile__edit-button');
 const popups = Array.from(document.querySelectorAll('.popup'));
@@ -107,11 +112,15 @@ const options = {
     inputErrorClass: 'popup__input-error_active'
 }
 
-initialCards.forEach((item) => {
+const makeCard = (item) => {
     const card = new Card(item.name, item.link);
     const cardElement = card.generate();
-    document.querySelector('.elements').prepend(cardElement);
-});
+    return cardElement;
+}
+
+const cardSection = new Section({ items: initialCards, renderer: makeCard }, feed)
+cardSection.renderItems();
+
 
 const validationAddForm = new FormValidator(options, formAdd);
 validationAddForm.enableValidation();
