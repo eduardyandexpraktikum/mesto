@@ -17,7 +17,6 @@ export class Card {
     }
 
     _setListeners() {
-        this._cardImage = this._element.querySelector('.element__image');
         this._element.querySelector('.element__like').addEventListener('click', this._likeCard);
 
         this._element.querySelector('.element__bin').addEventListener('click', this._deleteCard);

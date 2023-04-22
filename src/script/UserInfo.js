@@ -14,5 +14,6 @@ export class UserInfo {
     setUserInfo(name, description) {
         this._name.textContent = name
         this._description.textContent = description
+        console.log(this._description.textContent)
     }
 }
