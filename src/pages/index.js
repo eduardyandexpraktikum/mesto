@@ -1,21 +1,21 @@
-//import './pages/index.css';
-import { initialCards } from './script/feed.js';
-import { Card } from './script/Card.js';
-import { FormValidator } from './script/FormValidator.js';
-import { Section } from './script/Section.js';
-import { Popup } from './script/Popup.js';
-import { PopupWithForm } from './script/PopupWithForm.js';
-import { PopupWithImage } from './script/PopupWithImage.js';
-import { UserInfo } from './script/UserInfo.js';
+import './index.css';
+import { initialCards } from '../utils/feed.js';
+import { Card } from '../components/Card.js';
+import { FormValidator } from '../components/FormValidator.js';
+import { Section } from '../components/Section.js';
+import { Popup } from '../components/Popup.js';
+import { PopupWithForm } from '../components/PopupWithForm.js';
+import { PopupWithImage } from '../components/PopupWithImage.js';
+import { UserInfo } from '../components/UserInfo.js';
 
 const editButton = document.querySelector('.profile__edit-button');
-const popups = Array.from(document.querySelectorAll('.popup'));
-const editPopup = document.querySelector('.popupEdit');
+//const popups = Array.from(document.querySelectorAll('.popup'));
+//const editPopup = document.querySelector('.popupEdit');
 //const popupClose = document.querySelector('.popup__close');
 //const closeButtons = document.querySelectorAll('.popup__close');
 
-const nameLabel = document.querySelector('.profile__name');
-const descriptionLabel = document.querySelector('.profile__description');
+//const nameLabel = document.querySelector('.profile__name');
+//const descriptionLabel = document.querySelector('.profile__description');
 const nameChange = document.querySelector('.popup__inputs_field_name');
 const descriptionChange = document.querySelector('.popup__inputs_field_description');
 
@@ -27,10 +27,10 @@ const formEdit = document.querySelector('#editPopupForm')
 
 const feed = document.querySelector('.elements');
 //const template = document.querySelector('.newElement');
-const imagePopup = document.querySelector('.popupImage');
-const imagePopupPic = document.querySelector('.popupImage__pic');
-const imagePopupDescription = document.querySelector('.popupImage__description');
-const buttonCloseImagePopup = document.querySelector('.popupImage__close');
+//const imagePopup = document.querySelector('.popupImage');
+//const imagePopupPic = document.querySelector('.popupImage__pic');
+//const imagePopupDescription = document.querySelector('.popupImage__description');
+//const buttonCloseImagePopup = document.querySelector('.popupImage__close');
 const nameAdd = document.querySelector('#addImageName');
 const linkAdd = document.querySelector('#addImageLink');
 
@@ -43,8 +43,9 @@ const createCard = (name, link) => {
 //formEdit.addEventListener('submit', () => { });
 //editButton.addEventListener('click', () => { });
 
-const handleAddFormSubmit = () => {
-    feed.prepend(createCard(nameAdd.value, linkAdd.value));
+const handleAddFormSubmit = (formValues) => {
+    console.log(formValues)
+    feed.prepend(makeCard(formValues));
     addForm.close();
 };
 
@@ -56,14 +57,14 @@ addButton.addEventListener('click', () => {
     addForm.open();
 });
 
-const userInformation = new UserInfo(nameLabel, descriptionLabel)
+const userInformation = new UserInfo('.profile__name', '.profile__description')
 
-const handleEditFormSubmit = () => {
-    userInformation.setUserInfo(nameChange.value, descriptionChange.value);
+const handleEditFormSubmit = (formValues) => {
+    userInformation.setUserInfo(formValues.name, formValues.description);
     editInfo.close();
 };
 
-const editInfo = new PopupWithForm("#editPopup", handleEditFormSubmit);
+const editInfo = new PopupWithForm(".popupEdit", handleEditFormSubmit);
 editInfo.setEventListeners();
 editButton.addEventListener('click', () => {
     const values = userInformation.getUserInfo();
@@ -88,13 +89,13 @@ const options = {
 
 const makeCard = (item) => {
     const card = new Card(item.name, item.link, () => {
-        cardImagePopup.open(item.link, item.name);
+        cardImagePopup.open(item.name, item.link);
     });
     const cardElement = card.generate();
     return cardElement;
 };
 
-const cardSection = new Section({ items: initialCards, renderer: makeCard }, feed)
+const cardSection = new Section({ items: initialCards, renderer: makeCard }, '.elements')
 cardSection.renderItems();
 
 const validationAddForm = new FormValidator(options, formAdd);

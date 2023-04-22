@@ -5,7 +5,6 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="pages/index.css">
     <title>Mesto</title>
 </head>
 
@@ -44,12 +43,12 @@
                 autocomplete="on" novalidate>
                 <div class="popup__inputSection">
                     <input type="text" id="name_change" class="popup__inputs popup__inputs_field_name" placeholder="Имя"
-                        name="popup-name" minlength="2" maxlength="40" required>
+                        name="name" minlength="2" maxlength="40" required>
                     <span class="popup__input-error"></span>
                 </div>
                 <div class="popup__inputSection">
                     <input type="text" id="description_change" class="popup__inputs popup__inputs_field_description"
-                        placeholder="О себе" name="popup-description" minlength="2" maxlength="200" required>
+                        placeholder="О себе" name="description" minlength="2" maxlength="200" required>
                     <span class="popup__input-error"></span>
                 </div>
                 <button class="popup__confirm" type="submit">Сохранить</button>
@@ -64,12 +63,12 @@
                 autocomplete="on" novalidate>
                 <div class="popup__inputSection">
                     <input type="text" id="addImageName" class="popup__inputs popup__inputs_field_name"
-                        placeholder="Название" name="popupAddItem-name" minlength="2" maxlength="30" required>
+                        placeholder="Название" name="name" minlength="2" maxlength="30" required>
                     <span class="popup__input-error"></span>
                 </div>
                 <div class="popup__inputSection">
                     <input type="url" id="addImageLink" class="popup__inputs popup__inputs_field_link"
-                        placeholder="Ссылка на картинку" name="popupAddItem-link" required>
+                        placeholder="Ссылка на картинку" name="link" required>
                     <span class="popup__input-error"></span>
                 </div>
                 <button class="popup__confirm" id="buttonAddItem" type="submit">Создать</button>
@@ -79,7 +78,7 @@
     </div>
     <div class="popup popupImage">
         <div class="popupImage__container">
-            <img src="../images/1.jpg" alt="Описание" class="popupImage__pic">
+            <img src="../src/images/1.jpg" alt="Описание" class="popupImage__pic">
             <p class="popupImage__description">123</p>
             <button type="button" class="popup__close popupImage__close"></button>
         </div>
@@ -97,7 +96,6 @@
             </div>
         </article>
     </template>
-    <script src='index.js' type="module"></script>
 </body>
 
 </html>
