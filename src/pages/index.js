@@ -9,50 +9,23 @@ import { PopupWithImage } from '../components/PopupWithImage.js';
 import { UserInfo } from '../components/UserInfo.js';
 
 const editButton = document.querySelector('.profile__edit-button');
-//const popups = Array.from(document.querySelectorAll('.popup'));
-//const editPopup = document.querySelector('.popupEdit');
-//const popupClose = document.querySelector('.popup__close');
-//const closeButtons = document.querySelectorAll('.popup__close');
 
-//const nameLabel = document.querySelector('.profile__name');
-//const descriptionLabel = document.querySelector('.profile__description');
 const nameChange = document.querySelector('.popup__inputs_field_name');
 const descriptionChange = document.querySelector('.popup__inputs_field_description');
 
-//const popupAddItem = document.querySelector('.popupAdd');
-//const buttonAddItem = popupAddItem.querySelector('#buttonAddItem');
 const addButton = document.querySelector('.profile__add');
 const formAdd = document.querySelector('#addPopupForm');
 const formEdit = document.querySelector('#editPopupForm')
 
-const feed = document.querySelector('.elements');
-//const template = document.querySelector('.newElement');
-//const imagePopup = document.querySelector('.popupImage');
-//const imagePopupPic = document.querySelector('.popupImage__pic');
-//const imagePopupDescription = document.querySelector('.popupImage__description');
-//const buttonCloseImagePopup = document.querySelector('.popupImage__close');
-const nameAdd = document.querySelector('#addImageName');
-const linkAdd = document.querySelector('#addImageLink');
-
-
-const createCard = (name, link) => {
-    const card = new Card(name, link);
-    return card.generate();
-};
-
-//formEdit.addEventListener('submit', () => { });
-//editButton.addEventListener('click', () => { });
-
 const handleAddFormSubmit = (formValues) => {
     console.log(formValues)
-    feed.prepend(makeCard(formValues));
+    cardSection.addItem(makeCard(formValues));
     addForm.close();
 };
 
 const addForm = new PopupWithForm("#addPopup", handleAddFormSubmit);
 addForm.setEventListeners();
 addButton.addEventListener('click', () => {
-    //formAdd.reset();
     validationAddForm.disableButton();
     addForm.open();
 });
