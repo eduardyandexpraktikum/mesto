@@ -76,3 +76,6 @@ validationAddForm.enableValidation();
 
 const validationEditForm = new FormValidator(options, formEdit);
 validationEditForm.enableValidation();
+
+// 7a630e5f-f0b7-4c93-a00f-a1198348af6d
+// cohort-64
