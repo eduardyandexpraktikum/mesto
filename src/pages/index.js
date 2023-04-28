@@ -1,4 +1,5 @@
-import './index.css';
+//import './index.css';
+import { Api } from '../components/Api.js';
 import { initialCards } from '../utils/feed.js';
 import { Card } from '../components/Card.js';
 import { FormValidator } from '../components/FormValidator.js';
@@ -9,43 +10,11 @@ import { PopupWithImage } from '../components/PopupWithImage.js';
 import { UserInfo } from '../components/UserInfo.js';
 
 const editButton = document.querySelector('.profile__edit-button');
-
 const nameChange = document.querySelector('.popup__inputs_field_name');
 const descriptionChange = document.querySelector('.popup__inputs_field_description');
-
 const addButton = document.querySelector('.profile__add');
 const formAdd = document.querySelector('#addPopupForm');
 const formEdit = document.querySelector('#editPopupForm')
-
-const handleAddFormSubmit = (formValues) => {
-    console.log(formValues)
-    cardSection.addItem(makeCard(formValues));
-    addForm.close();
-};
-
-const addForm = new PopupWithForm("#addPopup", handleAddFormSubmit);
-addForm.setEventListeners();
-addButton.addEventListener('click', () => {
-    validationAddForm.disableButton();
-    addForm.open();
-});
-
-const userInformation = new UserInfo('.profile__name', '.profile__description')
-
-const handleEditFormSubmit = (formValues) => {
-    userInformation.setUserInfo(formValues.name, formValues.description);
-    editInfo.close();
-};
-
-const editInfo = new PopupWithForm(".popupEdit", handleEditFormSubmit);
-editInfo.setEventListeners();
-editButton.addEventListener('click', () => {
-    const values = userInformation.getUserInfo();
-    nameChange.value = values.name;
-    descriptionChange.value = values.description;
-    validationEditForm.toggleButtonState();
-    editInfo.open();
-});
 
 const cardImagePopup = new PopupWithImage('.popupImage');
 cardImagePopup.setEventListeners();
@@ -60,22 +29,67 @@ const options = {
     inputErrorClass: 'popup__input-error_active'
 };
 
-const makeCard = (item) => {
-    const card = new Card(item.name, item.link, () => {
-        cardImagePopup.open(item.name, item.link);
+const makeCard = (data) => {
+    const card = new Card(data.name, data.link, data.likes, () => {
+        cardImagePopup.open(data.name, data.link);
     });
     const cardElement = card.generate();
     return cardElement;
 };
 
-const cardSection = new Section({ items: initialCards, renderer: makeCard }, '.elements')
-cardSection.renderItems();
+const api = new Api({
+    baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-64',
+    headers: {
+        authorization: '7a630e5f-f0b7-4c93-a00f-a1198348af6d',
+        'Content-Type': 'application/json'
+    }
+});
+
+const cardSection = new Section(makeCard, '.elements')
+api.getInitialCards().then(data => {
+    cardSection.renderItems(data);
+});
+
+const userInformation = new UserInfo('.profile__name', '.profile__description', '.profile__avatar');
+api.getUserinfo().then(data => {
+    userInformation.renderInfo(data.name, data.about, data.avatar);
+})
+
+const handleEditFormSubmit = (formValues) => {
+    api.patchUserInfo(formValues.name, formValues.description);
+    userInformation.setUserInfo(formValues.name, formValues.description);
+    editInfo.close();
+};
+
+const editInfo = new PopupWithForm(".popupEdit", handleEditFormSubmit);
+editInfo.setEventListeners();
+editButton.addEventListener('click', () => {
+    const values = userInformation.getUserInfo();
+    nameChange.value = values.name;
+    descriptionChange.value = values.description;
+    validationEditForm.toggleButtonState();
+    editInfo.open();
+});
+
+const handleAddFormSubmit = (formValues) => {
+    console.log(formValues);
+    api.postNewCards(formValues.name, formValues.link)
+        .then((res) => {
+            console.log(res)
+        });
+    cardSection.addItemBackwards(makeCard(formValues));
+    addForm.close();
+};
+
+const addForm = new PopupWithForm("#addPopup", handleAddFormSubmit);
+addForm.setEventListeners();
+addButton.addEventListener('click', () => {
+    validationAddForm.disableButton();
+    addForm.open();
+});
 
 const validationAddForm = new FormValidator(options, formAdd);
 validationAddForm.enableValidation();
 
 const validationEditForm = new FormValidator(options, formEdit);
 validationEditForm.enableValidation();
-
-// 7a630e5f-f0b7-4c93-a00f-a1198348af6d
-// cohort-64

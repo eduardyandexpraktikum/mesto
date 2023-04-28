@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="pages/index.css">
     <title>Mesto</title>
 </head>
 
@@ -19,11 +20,11 @@
                     <img src="../src/images/avatar.png" alt="Аватар" class="profile__avatar">
                     <div class="profile__info">
                         <div class="profile__namebox">
-                            <h1 class="profile__name">Жирный</h1>
+                            <h1 class="profile__name">Загрузка…</h1>
                             <button type="button" class="profile__edit-button">
                             </button>
                         </div>
-                        <p class="profile__description">как поезд пассажирный</p>
+                        <p class="profile__description">Пожалуйста, подождите</p>
                     </div>
                 </div>
                 <button type="button" class="profile__add"></button>
@@ -91,11 +92,15 @@
             </button>
             <div class="element__caption">
                 <h2 class="element__description">12345</h2>
-                <button class="element__like" type="button">
-                </button>
+                <div class="element__likebox">
+                    <button class="element__like" type="button">
+                    </button>
+                    <p class="element__likecounter">0</p>
+                </div>
             </div>
         </article>
     </template>
+    <script src='pages/index.js' type="module"></script>
 </body>
 
 </html>
