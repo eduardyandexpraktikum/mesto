@@ -31,13 +31,13 @@ export class Api {
             });
     }
 
-    patchUserInfo(name, description) {
+    patchUserInfo({ name, about }) {
         return fetch(`${this.baseUrl}/users/me`, {
             method: 'PATCH',
             headers: this.headers,
             body: JSON.stringify({
                 name: name,
-                about: description
+                about: about
             })
         })
             .then(res => {
@@ -104,12 +104,12 @@ export class Api {
             });
     }
 
-    patchAvatar(link) {
+    patchAvatar({ avatar }) {
         return fetch(`${this.baseUrl}/users/me/avatar`, {
             method: 'PATCH',
             headers: this.headers,
             body: JSON.stringify({
-                avatar: link
+                avatar: avatar
             })
         })
             .then(res => {

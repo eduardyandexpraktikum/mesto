@@ -1,4 +1,4 @@
-//import './index.css';
+import './index.css';
 import { Api } from '../components/Api.js';
 import { initialCards } from '../utils/feed.js';
 import { Card } from '../components/Card.js';
@@ -19,22 +19,6 @@ const formEdit = document.querySelector('#editPopupForm');
 const formAvatar = document.querySelector('#avatarPopupForm')
 const editAvatarButton = document.querySelector('.profile__cover');
 
-const api = new Api({
-    baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-64',
-    headers: {
-        authorization: '7a630e5f-f0b7-4c93-a00f-a1198348af6d',
-        'Content-Type': 'application/json'
-    }
-});
-
-Promise.all([api.getInitialCards, api.getUserinfo])
-    .then((results) => {
-        console.log(results);
-    });
-
-const cardImagePopup = new PopupWithImage('.popupImage');
-cardImagePopup.setEventListeners();
-
 const options = {
     formSelector: '.popup__form',
     submitSelector: '.popup__confirm',
@@ -45,67 +29,69 @@ const options = {
     inputErrorClass: 'popup__input-error_active'
 };
 
-const makeCard = (data) => {
-    const card = new Card(userInformation.userId,
+const api = new Api({
+    baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-64',
+    headers: {
+        authorization: '7a630e5f-f0b7-4c93-a00f-a1198348af6d',
+        'Content-Type': 'application/json'
+    }
+});
+
+
+
+Promise.all([api.getInitialCards(), api.getUserinfo()])
+    .then(([results1, result2]) => {
+        console.log(results1, result2);
+        cardSection.renderItems(results1);
+        userInformation.setUserInfo(result2);
+    });
+
+
+
+function makeCard(data) {
+    console.log(userInformation, userInformation.userId);
+    const card = new Card(userInformation,
         data,
         () => { cardImagePopup.open(data.name, data.link); },
         () => { cardDeletePopup.open(data._id, card); },
         () => { handlePutLike },
         () => { handleDeleteLike });
-    const cardElement = card.generate();
-    return cardElement;
+    return card.generate();
 };
 
-const cardSection = new Section(makeCard, '.elements')
-api.getInitialCards().then(data => {
-    cardSection.renderItems(data);
-});
-
-const userInformation = new UserInfo('.profile__name', '.profile__description', '.profile__avatar');
-api.getUserinfo().then(data => {
-    userInformation.renderInfo(data.name, data.about, data.avatar, data._id);
-})
 
 const handleEditFormSubmit = (formValues) => {
-    api.patchUserInfo(formValues.name, formValues.description);
-    userInformation.setUserInfo(formValues.name, formValues.description);
-    editInfo.close();
-};
-
-const editInfo = new PopupWithForm(".popupEdit", handleEditFormSubmit);
-editInfo.setEventListeners();
-editButton.addEventListener('click', () => {
-    const values = userInformation.getUserInfo();
-    nameChange.value = values.name;
-    descriptionChange.value = values.description;
-    validationEditForm.toggleButtonState();
-    editInfo.open();
-});
-
-const handleAddFormSubmit = (formValues) => {
-    console.log(formValues);
-    api.postNewCard(formValues.name, formValues.link)
+    console.log(formValues)
+    api.patchUserInfo(formValues)
         .then((res) => {
-            console.log(res)
-        });
-    cardSection.addItemBackwards(makeCard(formValues));
-    addForm.close();
+            userInformation.setUserInfo(res);
+            editInfo.close();
+        })
 };
 
-const addForm = new PopupWithForm("#addPopup", handleAddFormSubmit);
-addForm.setEventListeners();
+const handleChangeAvatar = ({ avatar }) => {
+    api.patchAvatar({ avatar })
+        .then((res) => {
+            userInformation.setUserInfo(res)
+            changeAvatarForm.close();
+        })
+};
+
+const handleAddFormSubmit = (data) => {
+    api.postNewCard(data.name, data.link)
+        .then((res) => {
+            cardSection.addItemBackwards(makeCard(res));
+            addForm.close();
+        });
+};
+
+
 addButton.addEventListener('click', () => {
-    validationAddForm.disableButton();
+    // validationAddForm.disableButton();
     addForm.open();
 });
 
-const handleChangeAvatar = (formValue) => {
-    api.patchAvatar(formValue.link);
-    userInformation.setAvatar(formValue.link);
-    console.log(userInformation.setAvatar);
-    console.log(formValue.link);
-    changeAvatarForm.close();
-};
+
 
 const cardDeletePopup = new PopupWithConfirmation('.popupDeleteCard', () => {
     api.deleteCard(cardDeletePopup.card)
@@ -118,18 +104,39 @@ const cardDeletePopup = new PopupWithConfirmation('.popupDeleteCard', () => {
 cardDeletePopup.setEventListeners();
 
 
-const validationAddForm = new FormValidator(options, formAdd);
-validationAddForm.enableValidation();
+// const validationAddForm = new FormValidator(options, formAdd);
+// validationAddForm.enableValidation();
 
-const validationEditForm = new FormValidator(options, formEdit);
-validationEditForm.enableValidation();
+// const validationEditForm = new FormValidator(options, formEdit);
+// validationEditForm.enableValidation();
 
-const validationAvatarForm = new FormValidator(options, formAvatar);
-validationAvatarForm.enableValidation();
+// const validationAvatarForm = new FormValidator(options, formAvatar);
+// validationAvatarForm.enableValidation();
 
 const changeAvatarForm = new PopupWithForm('#avatarPopup', handleChangeAvatar);
 changeAvatarForm.setEventListeners();
 editAvatarButton.addEventListener('click', () => {
-    validationAvatarForm.disableButton();
+    // validationAvatarForm.disableButton();
     changeAvatarForm.open();
 });
+
+const addForm = new PopupWithForm("#addPopup", handleAddFormSubmit);
+addForm.setEventListeners();
+
+const cardSection = new Section(makeCard, '.elements');
+const userInformation = new UserInfo({ name: '.profile__name', about: '.profile__description', avatar: '.profile__avatar' });
+
+const cardImagePopup = new PopupWithImage('.popupImage');
+cardImagePopup.setEventListeners();
+
+const editInfo = new PopupWithForm(".popupEdit", handleEditFormSubmit);
+editInfo.setEventListeners();
+
+editButton.addEventListener('click', () => {
+    // const values = userInformation.getUserInfo();
+    // nameChange.value = values.name;
+    // descriptionChange.value = values.description;
+    // validationEditForm.toggleButtonState();
+    // editInfo.open();
+});
+

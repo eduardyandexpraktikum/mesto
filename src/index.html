@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="pages/index.css">
+    <!-- <link rel="stylesheet" href="pages/index.css"> -->
     <title>Mesto</title>
 </head>
 
@@ -52,7 +52,7 @@
                 </div>
                 <div class="popup__inputSection">
                     <input type="text" id="description_change" class="popup__inputs popup__inputs_field_description"
-                        placeholder="О себе" name="description" minlength="2" maxlength="200" required>
+                        placeholder="О себе" name="about" minlength="2" maxlength="200" required>
                     <span class="popup__input-error"></span>
                 </div>
                 <button class="popup__confirm" type="submit">Сохранить</button>
@@ -116,7 +116,8 @@
         <article class="element">
             <img class="element__image" src="#" alt="заглушка текста">
             <button class="element__bin" type="button">
-                <img src="../src/images/bin.svg" id=" bin" alt="Удалить">
+                <!-- <img src="../src/images/bin.svg" id=" bin" alt="Удалить"> -->
+                <img src="<%=require('./images/bin.svg')%>" id="bin" alt="Удалить">
             </button>
             <div class="element__caption">
                 <h2 class="element__description">12345</h2>
@@ -128,7 +129,7 @@
             </div>
         </article>
     </template>
-    <script src='pages/index.js' type="module"></script>
+    <!-- <script src='pages/index.js' type="module"></script> -->
 </body>
 
 </html>
