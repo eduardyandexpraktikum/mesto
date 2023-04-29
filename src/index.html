@@ -17,7 +17,11 @@
         <main>
             <section class="profile">
                 <div class="profile__about">
-                    <img src="../src/images/avatar.png" alt="Аватар" class="profile__avatar">
+                    <div class="profile__avatarbox">
+                        <img src="../src/images/avatar.png" alt="Аватар" class="profile__avatar">
+                        <button type="button" class="profile__cover"></button>
+                    </div>
+
                     <div class="profile__info">
                         <div class="profile__namebox">
                             <h1 class="profile__name">Загрузка…</h1>
@@ -30,7 +34,6 @@
                 <button type="button" class="profile__add"></button>
             </section>
             <section class="elements">
-
             </section>
         </main>
         <footer class="footer">
@@ -75,6 +78,31 @@
                 <button class="popup__confirm" id="buttonAddItem" type="submit">Создать</button>
             </form>
             <button type="button" class="popup__close" id="addPopupClose"></button>
+        </div>
+    </div>
+    <div class="popup popupAvatar" id="avatarPopup">
+        <div class="popup__container popupAvatar__container">
+            <h2 class="popup__title">Обновить аватар</h2>
+            <form action="#" method="post" name="avatarChange" id='avatarPopupForm'
+                class="popup__form popupAvatar__form" autocomplete="on" novalidate>
+                <div class="popup__inputSection">
+                    <input type="url" id="avatarImageLink" class="popup__inputs popup__inputs_field_link"
+                        placeholder="Ссылка на картинку" name="link" required>
+                    <span class="popup__input-error"></span>
+                </div>
+                <button class="popup__confirm" id="buttonAvatar" type="submit">Сохранить</button>
+            </form>
+            <button type="button" class="popup__close" id="avatarPopupClose"></button>
+        </div>
+    </div>
+    <div class="popup popupDeleteCard" id="deleteCardPopup">
+        <div class="popup__container popupDeleteCard__container">
+            <h2 class="popup__title popup__title_deleteCard">Вы уверены?</h2>
+            <form action="#" method="post" name="deleteCardChange" id='avatarPopupForm'
+                class="popup__form popupDeleteCard__form" autocomplete="on" novalidate>
+                <button class="popup__confirm" id="buttonDeleteCard" type="submit">Да</button>
+            </form>
+            <button type="button" class="popup__close" id="deleteCardPopupClose"></button>
         </div>
     </div>
     <div class="popup popupImage">

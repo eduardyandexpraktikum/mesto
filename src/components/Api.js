@@ -48,7 +48,7 @@ export class Api {
             });
     }
 
-    postNewCards(name, link) {
+    postNewCard(name, link) {
         return fetch(`${this.baseUrl}/cards`, {
             method: 'POST',
             headers: this.headers,
@@ -65,7 +65,7 @@ export class Api {
             });
     }
 
-    deleteCards(cardId) {
+    deleteCard(cardId) {
         return fetch(`${this.baseUrl}/cards/${cardId}`, {
             method: 'DELETE',
             headers: this.headers,
@@ -104,12 +104,12 @@ export class Api {
             });
     }
 
-    patchAvatar() {
+    patchAvatar(link) {
         return fetch(`${this.baseUrl}/users/me/avatar`, {
             method: 'PATCH',
             headers: this.headers,
             body: JSON.stringify({
-                link: link
+                avatar: link
             })
         })
             .then(res => {
