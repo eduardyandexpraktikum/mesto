@@ -25,13 +25,18 @@ export class Card {
     }
 
     _setListeners() {
-        this._element.querySelector('.element__like').addEventListener('click', this._likeCard);
+        this._likeButton.addEventListener('click', this.likeToggle);
         this._binButton.addEventListener('click', () => { this._handleDeletePopup(this._cardId, this._element) });
         this._cardImage.addEventListener('click', this._handleCardClick);
     }
 
-    _likeCard(evt) {
-        evt.target.classList.toggle('element__like_active');
+    likeToggle() {
+        if (!this._likeButton.classList.contains('element__like_active')) {
+            this._handlePutLike(this);
+        }
+        else {
+            this._handleDeleteLike(this);
+        }
     }
 
     _deleteCard(evt) {
@@ -41,11 +46,11 @@ export class Card {
     generate() {
         this._element = this._getTemplate();
         this._binButton = this._element.querySelector('.element__bin');
+        this._likeButton = this._element.querySelector('.element__like');
+        console.log(JSON.stringify(this._id))
+        console.log(this._id)
 
-        // console.log(this._id._name)
-
-
-        this._id !== this._data.owner._id ? this._binButton.style.display = "none" : "";
+        this._id === this._data.owner._id ? this._binButton.style.display = "" : "none";
 
         this._element.querySelector('.element__description').textContent = this._name;
         this._element.querySelector('.element__likecounter').textContent = this._likeCounter.length;

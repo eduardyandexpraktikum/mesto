@@ -8,14 +8,14 @@ export class PopupWithConfirmation extends Popup {
         this._deleteConfirmButtonLoading = this._deleteConfirmButton.textContent;
     }
 
-    loading(isLoading) {
+    renderLoading(isLoading) {
 
         if (isLoading) {
             this._deleteConfirmButton.textContent = "Удаление…";
             this._deleteConfirmButton.disabled = true;
         }
         else {
-            //this._deleteConfirmButton.textContent = this._deleteConfirmButtonLoading;
+            this._deleteConfirmButton.textContent = "Да";
             this._deleteConfirmButton.disabled = false;
         }
     }

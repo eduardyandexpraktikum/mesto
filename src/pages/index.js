@@ -38,7 +38,6 @@ const api = new Api({
 });
 
 
-
 Promise.all([api.getInitialCards(), api.getUserinfo()])
     .then(([results1, result2]) => {
         console.log(results1, result2);
@@ -47,9 +46,9 @@ Promise.all([api.getInitialCards(), api.getUserinfo()])
     });
 
 
-
 function makeCard(data) {
-    console.log(userInformation, userInformation.userId);
+
+    // console.log(userInformation, userInformation.userId);
     const card = new Card(userInformation,
         data,
         () => { cardImagePopup.open(data.name, data.link); },
@@ -87,36 +86,40 @@ const handleAddFormSubmit = (data) => {
 
 
 addButton.addEventListener('click', () => {
-    // validationAddForm.disableButton();
+    validationAddForm.disableButton();
     addForm.open();
 });
 
 
 
 const cardDeletePopup = new PopupWithConfirmation('.popupDeleteCard', () => {
+    this.renderLoading(true);
     api.deleteCard(cardDeletePopup.card)
         .then(() => {
             cardDeletePopup.card.remove();
         })
-        .catch(err => console.log(err));
+        .catch(err => console.log(err))
+        .finally(() => {
+            this.renderLoading(false);
+        });
     cardDeletePopup.close();
 })
 cardDeletePopup.setEventListeners();
 
 
-// const validationAddForm = new FormValidator(options, formAdd);
-// validationAddForm.enableValidation();
+const validationAddForm = new FormValidator(options, formAdd);
+validationAddForm.enableValidation();
 
-// const validationEditForm = new FormValidator(options, formEdit);
-// validationEditForm.enableValidation();
+const validationEditForm = new FormValidator(options, formEdit);
+validationEditForm.enableValidation();
 
-// const validationAvatarForm = new FormValidator(options, formAvatar);
-// validationAvatarForm.enableValidation();
+const validationAvatarForm = new FormValidator(options, formAvatar);
+validationAvatarForm.enableValidation();
 
 const changeAvatarForm = new PopupWithForm('#avatarPopup', handleChangeAvatar);
 changeAvatarForm.setEventListeners();
 editAvatarButton.addEventListener('click', () => {
-    // validationAvatarForm.disableButton();
+    validationAvatarForm.disableButton();
     changeAvatarForm.open();
 });
 
@@ -133,10 +136,10 @@ const editInfo = new PopupWithForm(".popupEdit", handleEditFormSubmit);
 editInfo.setEventListeners();
 
 editButton.addEventListener('click', () => {
-    // const values = userInformation.getUserInfo();
-    // nameChange.value = values.name;
-    // descriptionChange.value = values.description;
-    // validationEditForm.toggleButtonState();
-    // editInfo.open();
+    const values = userInformation.getUserInfo();
+    nameChange.value = values.name;
+    descriptionChange.value = values.about;
+    validationEditForm.toggleButtonState();
+    editInfo.open();
 });
 
