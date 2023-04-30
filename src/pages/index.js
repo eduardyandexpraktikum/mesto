@@ -52,24 +52,26 @@ function makeCard(data) {
         userInformation.userId,
         data,
         () => { cardImagePopup.open(data.name, data.link); },
-        () => { cardDeletePopup.open(data._id, card); },
-        () => { handlePutLike },
-        () => { handleDeleteLike(); });
+        (id, card) => cardDeletePopup.open(id, card),
+        handlePutLike,
+        handleDeleteLike
+    )
     return card.generate();
 };
 
 const handlePutLike = (card) => {
     api.putLike(card.cardId)
-        .then(res => console.log(res))
+        .then(card.toggleLike)
+        .catch(console.log)
 }
 
 const handleDeleteLike = (card) => {
     api.deleteLike(card.cardId)
-        .then(res => console.log(res))
+        .then(card.toggleLike)
+        .catch(console.log)
 }
 
 const handleEditFormSubmit = (formValues) => {
-    console.log(formValues)
     api.patchUserInfo(formValues)
         .then((res) => {
             userInformation.setUserInfo(res);
@@ -101,14 +103,15 @@ addButton.addEventListener('click', () => {
 });
 
 const cardDeletePopup = new PopupWithConfirmation('.popupDeleteCard', () => {
-    this.renderLoading(true);
-    api.deleteCard(cardDeletePopup.cardElement)
+    cardDeletePopup.renderLoading(true);
+    api.deleteCard(cardDeletePopup.cardId)
         .then(() => {
+            // console.log(cardDeletePopup.cardElement)
             cardDeletePopup.cardElement.remove();
         })
-        .catch(err => console.log(err))
+        .catch(console.log)
         .finally(() => {
-            this.renderLoading(false);
+            cardDeletePopup.renderLoading(false);
         });
     cardDeletePopup.close();
 })

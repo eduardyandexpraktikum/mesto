@@ -30,7 +30,6 @@ export class PopupWithConfirmation extends Popup {
     }
 
     open(cardId, cardElement) {
-        this.renderLoading(false);
         super.open();
         this.cardId = cardId;
         this.cardElement = cardElement;
