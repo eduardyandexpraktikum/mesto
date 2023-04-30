@@ -28,4 +28,17 @@ export class PopupWithConfirmation extends Popup {
             this._popup.close();
         });
     }
+
+    open(cardId, cardElement) {
+        this.renderLoading(false);
+        super.open();
+        this.cardId = cardId;
+        this.cardElement = cardElement;
+        this._deleteConfirmButton.addEventListener("click", this._handleDeleteCard);
+    }
+
+    close() {
+        super.close();
+        this._deleteConfirmButton.removeEventListener("click", this._handleDeleteCard);
+    }
 }

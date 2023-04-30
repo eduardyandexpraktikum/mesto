@@ -37,22 +37,19 @@ const api = new Api({
     }
 });
 
-function myProm() {
-    Promise.all([api.getInitialCards(), api.getUserinfo()])
-        .then(([result1, result2]) => {
-            console.log(result1, result2);
-            cardSection.renderItems(result1);
-            userInformation.setUserInfo(result2);
-        });
-}
 
-myProm();
+Promise.all([api.getUserinfo(), api.getInitialCards()])
+    .then(([result1, result2]) => {
+        userInformation.setUserInfo(result1);
+        cardSection.renderItems(result2);
+    });
 
 
 function makeCard(data) {
 
     // console.log(userInformation, userInformation.userId);
-    const card = new Card(userInformation.userId,
+    const card = new Card(
+        userInformation.userId,
         data,
         () => { cardImagePopup.open(data.name, data.link); },
         () => { cardDeletePopup.open(data._id, card); },
@@ -62,12 +59,12 @@ function makeCard(data) {
 };
 
 const handlePutLike = (card) => {
-    api.putLike(card)
+    api.putLike(card.cardId)
         .then(res => console.log(res))
 }
 
 const handleDeleteLike = (card) => {
-    api.deleteLike(card)
+    api.deleteLike(card.cardId)
         .then(res => console.log(res))
 }
 
@@ -98,15 +95,16 @@ const handleAddFormSubmit = (data) => {
 
 
 addButton.addEventListener('click', () => {
+    addForm.renderLoading(false);
     validationAddForm.disableButton();
     addForm.open();
 });
 
 const cardDeletePopup = new PopupWithConfirmation('.popupDeleteCard', () => {
     this.renderLoading(true);
-    api.deleteCard(cardDeletePopup.card)
+    api.deleteCard(cardDeletePopup.cardElement)
         .then(() => {
-            cardDeletePopup.card.remove();
+            cardDeletePopup.cardElement.remove();
         })
         .catch(err => console.log(err))
         .finally(() => {
@@ -129,6 +127,7 @@ validationAvatarForm.enableValidation();
 const changeAvatarForm = new PopupWithForm('#avatarPopup', handleChangeAvatar);
 changeAvatarForm.setEventListeners();
 editAvatarButton.addEventListener('click', () => {
+    changeAvatarForm.renderLoading(false);
     validationAvatarForm.disableButton();
     changeAvatarForm.open();
 });
@@ -149,6 +148,7 @@ editButton.addEventListener('click', () => {
     const values = userInformation.getUserInfo();
     nameChange.value = values.name;
     descriptionChange.value = values.about;
+    editInfo.renderLoading(false);
     validationEditForm.toggleButtonState();
     editInfo.open();
 });

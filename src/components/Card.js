@@ -5,9 +5,9 @@ export class Card {
         this._data = data;
         this._name = data.name;
         this._link = data.link;
-        this._cardId = data._id;
+        this.cardId = data._id;
         this._likeCounter = data.likes;
-        this._cardCreator = data.owner;
+        this._cardCreator = data.owner._id;
         this._handleCardClick = handleCardClick;
         this._handleDeletePopup = handleDeletePopup;
         this._handlePutLike = handlePutLike;
@@ -26,7 +26,7 @@ export class Card {
 
     _setListeners() {
         this._likeButton.addEventListener('click', this.likeToggle);
-        this._binButton.addEventListener('click', () => { this._handleDeletePopup(this._cardId, this._element) });
+        this._binButton.addEventListener('click', () => { this._handleDeletePopup(this.cardId, this._element) });
         this._cardImage.addEventListener('click', this._handleCardClick);
     }
 
@@ -47,8 +47,6 @@ export class Card {
         this._element = this._getTemplate();
         this._binButton = this._element.querySelector('.element__bin');
         this._likeButton = this._element.querySelector('.element__like');
-        console.log(this._id)
-        console.log(this._cardCreator)
 
         this._id !== this._cardCreator ? this._binButton.style.display = "none" : "";
 
