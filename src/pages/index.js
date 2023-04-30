@@ -37,27 +37,39 @@ const api = new Api({
     }
 });
 
+function myProm() {
+    Promise.all([api.getInitialCards(), api.getUserinfo()])
+        .then(([result1, result2]) => {
+            console.log(result1, result2);
+            cardSection.renderItems(result1);
+            userInformation.setUserInfo(result2);
+        });
+}
 
-Promise.all([api.getInitialCards(), api.getUserinfo()])
-    .then(([results1, result2]) => {
-        console.log(results1, result2);
-        cardSection.renderItems(results1);
-        userInformation.setUserInfo(result2);
-    });
+myProm();
 
 
 function makeCard(data) {
 
     // console.log(userInformation, userInformation.userId);
-    const card = new Card(userInformation,
+    const card = new Card(userInformation.userId,
         data,
         () => { cardImagePopup.open(data.name, data.link); },
         () => { cardDeletePopup.open(data._id, card); },
         () => { handlePutLike },
-        () => { handleDeleteLike });
+        () => { handleDeleteLike(); });
     return card.generate();
 };
 
+const handlePutLike = (card) => {
+    api.putLike(card)
+        .then(res => console.log(res))
+}
+
+const handleDeleteLike = (card) => {
+    api.deleteLike(card)
+        .then(res => console.log(res))
+}
 
 const handleEditFormSubmit = (formValues) => {
     console.log(formValues)
@@ -89,8 +101,6 @@ addButton.addEventListener('click', () => {
     validationAddForm.disableButton();
     addForm.open();
 });
-
-
 
 const cardDeletePopup = new PopupWithConfirmation('.popupDeleteCard', () => {
     this.renderLoading(true);

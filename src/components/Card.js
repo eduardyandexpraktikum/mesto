@@ -47,10 +47,10 @@ export class Card {
         this._element = this._getTemplate();
         this._binButton = this._element.querySelector('.element__bin');
         this._likeButton = this._element.querySelector('.element__like');
-        console.log(JSON.stringify(this._id))
         console.log(this._id)
+        console.log(this._cardCreator)
 
-        this._id === this._data.owner._id ? this._binButton.style.display = "" : "none";
+        this._id !== this._cardCreator ? this._binButton.style.display = "none" : "";
 
         this._element.querySelector('.element__description').textContent = this._name;
         this._element.querySelector('.element__likecounter').textContent = this._likeCounter.length;
