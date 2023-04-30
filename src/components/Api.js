@@ -104,12 +104,12 @@ export class Api {
             });
     }
 
-    patchAvatar({ avatar }) {
+    patchAvatar({ link }) {
         return fetch(`${this.baseUrl}/users/me/avatar`, {
             method: 'PATCH',
             headers: this.headers,
             body: JSON.stringify({
-                avatar: avatar
+                avatar: link
             })
         })
             .then(res => {

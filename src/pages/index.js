@@ -79,8 +79,8 @@ const handleEditFormSubmit = (formValues) => {
         })
 };
 
-const handleChangeAvatar = ({ avatar }) => {
-    api.patchAvatar({ avatar })
+const handleChangeAvatar = (avatar) => {
+    api.patchAvatar(avatar)
         .then((res) => {
             userInformation.setUserInfo(res)
             changeAvatarForm.close();
