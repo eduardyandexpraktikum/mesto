@@ -47,7 +47,6 @@ Promise.all([api.getUserinfo(), api.getInitialCards()])
 
 function makeCard(data) {
 
-    // console.log(userInformation, userInformation.userId);
     const card = new Card(
         userInformation.userId,
         data,
@@ -61,13 +60,13 @@ function makeCard(data) {
 
 const handlePutLike = (card) => {
     api.putLike(card.cardId)
-        .then(card.toggleLike)
+        .then((res) => card.toggleLike(res))
         .catch(console.log)
 }
 
 const handleDeleteLike = (card) => {
     api.deleteLike(card.cardId)
-        .then(card.toggleLike)
+        .then((res) => card.toggleLike(res))
         .catch(console.log)
 }
 
@@ -77,6 +76,9 @@ const handleEditFormSubmit = (formValues) => {
             userInformation.setUserInfo(res);
             editInfo.close();
         })
+        .catch(console.log)
+        .finally(
+            editInfo.renderLoading(false));
 };
 
 const handleChangeAvatar = (avatar) => {
@@ -85,6 +87,7 @@ const handleChangeAvatar = (avatar) => {
             userInformation.setUserInfo(res)
             changeAvatarForm.close();
         })
+        .catch(console.log)
 };
 
 const handleAddFormSubmit = (data) => {
@@ -92,7 +95,8 @@ const handleAddFormSubmit = (data) => {
         .then((res) => {
             cardSection.addItemBackwards(makeCard(res));
             addForm.close();
-        });
+        })
+        .catch(console.log);
 };
 
 
@@ -106,14 +110,13 @@ const cardDeletePopup = new PopupWithConfirmation('.popupDeleteCard', () => {
     cardDeletePopup.renderLoading(true);
     api.deleteCard(cardDeletePopup.cardId)
         .then(() => {
-            // console.log(cardDeletePopup.cardElement)
             cardDeletePopup.cardElement.remove();
+            cardDeletePopup.close();
         })
         .catch(console.log)
         .finally(() => {
             cardDeletePopup.renderLoading(false);
         });
-    cardDeletePopup.close();
 })
 cardDeletePopup.setEventListeners();
 
@@ -151,7 +154,6 @@ editButton.addEventListener('click', () => {
     const values = userInformation.getUserInfo();
     nameChange.value = values.name;
     descriptionChange.value = values.about;
-    editInfo.renderLoading(false);
     validationEditForm.toggleButtonState();
     editInfo.open();
 });

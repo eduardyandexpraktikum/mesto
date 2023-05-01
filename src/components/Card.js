@@ -34,8 +34,7 @@ export class Card {
         this._cardImage.addEventListener('click', this._handleCardClick);
     }
 
-    toggleLike() {
-        console.log(this._likeButton)
+    toggleLike(res) {
         this._likeButton.classList.toggle("element__like_active");
         this._likeAmount.textContent = res.likes.length;
     }
@@ -47,6 +46,10 @@ export class Card {
         else {
             this._handleDeleteLike(this);
         }
+    }
+
+    deleteCard() {
+        this.cardElement.remove();
     }
 
     generate() {
