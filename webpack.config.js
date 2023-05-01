@@ -15,6 +15,7 @@ module.exports = {
             directory: path.join(__dirname, 'build'),
         },
         compress: true,
+        open: true,
         port: 9000,
     },
 

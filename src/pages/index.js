@@ -71,37 +71,47 @@ const handleDeleteLike = (card) => {
 }
 
 const handleEditFormSubmit = (formValues) => {
+    editInfo.renderLoading(true);
     api.patchUserInfo(formValues)
         .then((res) => {
             userInformation.setUserInfo(res);
             editInfo.close();
         })
         .catch(console.log)
-        .finally(
-            editInfo.renderLoading(false));
+        .finally(() => {
+            editInfo.renderLoading(false);
+        });
 };
 
 const handleChangeAvatar = (avatar) => {
+    changeAvatarForm.renderLoading(true);
+    console.log(changeAvatarForm.renderLoading())
     api.patchAvatar(avatar)
         .then((res) => {
             userInformation.setUserInfo(res)
             changeAvatarForm.close();
         })
         .catch(console.log)
+        .finally(() => {
+            changeAvatarForm.renderLoading(false);
+        })
 };
 
 const handleAddFormSubmit = (data) => {
+    addForm.renderLoading(true);
     api.postNewCard(data.name, data.link)
         .then((res) => {
             cardSection.addItemBackwards(makeCard(res));
             addForm.close();
         })
-        .catch(console.log);
+        .catch(console.log)
+        .finally(() => {
+            addForm.renderLoading(false);
+        })
 };
 
 
 addButton.addEventListener('click', () => {
-    addForm.renderLoading(false);
     validationAddForm.disableButton();
     addForm.open();
 });
@@ -111,12 +121,12 @@ const cardDeletePopup = new PopupWithConfirmation('.popupDeleteCard', () => {
     cardDeletePopup.renderLoading(true);
     api.deleteCard(cardDeletePopup.cardId)
         .then(() => {
-            cardDeletePopup.cardElement.remove();
-            cardDeletePopup.close();
+            card.deleteCard();
         })
         .catch(console.log)
         .finally(() => {
             cardDeletePopup.renderLoading(false);
+            cardDeletePopup.close();
         });
 })
 cardDeletePopup.setEventListeners();
@@ -134,7 +144,6 @@ validationAvatarForm.enableValidation();
 const changeAvatarForm = new PopupWithForm('#avatarPopup', handleChangeAvatar);
 changeAvatarForm.setEventListeners();
 editAvatarButton.addEventListener('click', () => {
-    changeAvatarForm.renderLoading(false);
     validationAvatarForm.disableButton();
     changeAvatarForm.open();
 });

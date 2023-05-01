@@ -6,6 +6,8 @@ export class PopupWithConfirmation extends Popup {
         this._handleDeleteCard = handleDeleteCard;
         this._deleteConfirmButton = this._popup.querySelector('#buttonDeleteCard');
         this._deleteConfirmButtonLoading = this._deleteConfirmButton.textContent;
+        this._submitButton = this._popup.querySelector('.popup__confirm');
+        this._defaultText = this._submitButton.textContent;
     }
 
     renderLoading(isLoading) {
@@ -23,16 +25,12 @@ export class PopupWithConfirmation extends Popup {
     setEventListeners() {
         super.setEventListeners();
         this._deleteConfirmButton.addEventListener("click", this._handleDeleteCard);
-        this._deleteConfirmButton.addEventListener('submit', (evt) => {
-            evt.preventDefault();
-            this._handleDeleteCard();
-        });
     }
 
-    open(cardId, cardElement) {
+    open(id, card) {
         super.open();
-        this.cardId = cardId;
-        this.cardElement = cardElement;
+        this.cardId = id;
+        this.cardElement = card;
     }
 
 

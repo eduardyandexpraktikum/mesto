@@ -30,8 +30,15 @@ export class Card {
 
     _setListeners() {
         this._likeButton.addEventListener('click', () => { this.likeToggle(this) });
-        this._binButton.addEventListener('click', () => { this._handleDeletePopup(this.cardId, this.cardElement) });
+        this._binButton.addEventListener('click', () => {
+            this._handleDeletePopup(this.cardId, this.cardElement)
+        });
         this._cardImage.addEventListener('click', this._handleCardClick);
+    }
+
+
+    deleteCard() {
+        this.cardElement.remove();
     }
 
     toggleLike(res) {
@@ -46,10 +53,6 @@ export class Card {
         else {
             this._handleDeleteLike(this);
         }
-    }
-
-    deleteCard() {
-        this.cardElement.remove();
     }
 
     generate() {
