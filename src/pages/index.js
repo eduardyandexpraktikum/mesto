@@ -51,7 +51,8 @@ function makeCard(data) {
         userInformation.userId,
         data,
         () => { cardImagePopup.open(data.name, data.link); },
-        (id, card) => cardDeletePopup.open(id, card),
+        // (id, card) => cardDeletePopup.open(id, card),
+        submitDeletePopup,
         handlePutLike,
         handleDeleteLike
     )
@@ -107,19 +108,37 @@ addButton.addEventListener('click', () => {
 });
 
 
-const cardDeletePopup = new PopupWithConfirmation('.popupDeleteCard', () => {
-    cardDeletePopup.renderLoading(true);
-    api.deleteCard(cardDeletePopup.cardId)
-        .then(() => {
-            // cardDeletePopup.cardElement.remove();
-            cardDeletePopup.close();
-        })
-        .catch(console.log)
-        .finally(() => {
-            cardDeletePopup.renderLoading(false);
-        });
-})
+const cardDeletePopup = new PopupWithConfirmation('.popupDeleteCard')
 cardDeletePopup.setEventListeners();
+
+function submitDeletePopup(card) {
+    // cardDeletePopup.renderLoading(true);
+    cardDeletePopup.open();
+    cardDeletePopup.deleteCard(() => {
+        api.deleteCard(card.cardId)
+            .then(() => {
+                card.deleteCard();
+                cardDeletePopup.close();
+            }
+            )
+            .catch(console.log)
+            .finally(() => {
+                cardDeletePopup.renderLoading(false);
+            })
+    })
+}
+
+// () => {
+//     api.deleteCard(cardDeletePopup.cardId)
+//         .then(() => {
+//             cardDeletePopup.cardElement.remove();
+//             cardDeletePopup.close();
+//         })
+//         .catch(console.log)
+//         .finally(() => {
+//             cardDeletePopup.renderLoading(false);
+//         });
+// }
 
 
 const validationAddForm = new FormValidator(options, formAdd);

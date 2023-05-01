@@ -30,7 +30,7 @@ export class Card {
 
     _setListeners() {
         this._likeButton.addEventListener('click', () => { this.likeToggle(this) });
-        this._binButton.addEventListener('click', () => { this._handleDeletePopup(this.cardId, this.cardElement) });
+        this._binButton.addEventListener('click', () => { this._handleDeletePopup(this) });
         this._cardImage.addEventListener('click', this._handleCardClick);
     }
 
@@ -49,7 +49,7 @@ export class Card {
     }
 
     deleteCard() {
-        this.cardElement.remove();
+        this._binButton.closest('.element').remove();
     }
 
     generate() {

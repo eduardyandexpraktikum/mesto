@@ -1,11 +1,15 @@
 import { Popup } from "./Popup.js";
 
 export class PopupWithConfirmation extends Popup {
-    constructor(selector, handleDeleteCard) {
+    constructor(selector, /* handleDeleteCard */) {
         super(selector);
-        this._handleDeleteCard = handleDeleteCard;
+        // this._handleDeleteCard = handleDeleteCard;
         this._deleteConfirmButton = this._popup.querySelector('#buttonDeleteCard');
         this._deleteConfirmButtonLoading = this._deleteConfirmButton.textContent;
+    }
+
+    deleteCard(data) {
+        submitDelete = data
     }
 
     renderLoading(isLoading) {
