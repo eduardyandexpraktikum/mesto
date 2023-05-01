@@ -106,12 +106,16 @@ addButton.addEventListener('click', () => {
     addForm.open();
 });
 
+const removalCard = () => {
+    card.remove();
+}
 
 const cardDeletePopup = new PopupWithConfirmation('.popupDeleteCard', () => {
     cardDeletePopup.renderLoading(true);
     api.deleteCard(cardDeletePopup.cardId)
         .then(() => {
             // cardDeletePopup.cardElement.remove();
+            removalCard();
             cardDeletePopup.close();
         })
         .catch(console.log)
