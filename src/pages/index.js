@@ -42,7 +42,8 @@ Promise.all([api.getUserinfo(), api.getInitialCards()])
     .then(([result1, result2]) => {
         userInformation.setUserInfo(result1);
         cardSection.renderItems(result2);
-    });
+    })
+    .catch(console.log);
 
 
 function makeCard(data) {
