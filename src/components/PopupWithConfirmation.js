@@ -24,13 +24,13 @@ export class PopupWithConfirmation extends Popup {
 
     setEventListeners() {
         super.setEventListeners();
-        this._deleteConfirmButton.addEventListener("click", this._handleDeleteCard);
+        this._deleteConfirmButton.addEventListener("click", () => { this._handleDeleteCard(this.cardElement) });
     }
 
-    open(id, card) {
+    open(card) {
         super.open();
-        this.cardId = id;
         this.cardElement = card;
+        this.cardId = this.cardElement._data._id;
     }
 
 

@@ -51,7 +51,7 @@ function makeCard(data) {
         userInformation.userId,
         data,
         () => { cardImagePopup.open(data.name, data.link); },
-        (id, card) => cardDeletePopup.open(id, card),
+        (dataCard) => cardDeletePopup.open(dataCard),
         handlePutLike,
         handleDeleteLike
     )
@@ -117,16 +117,18 @@ addButton.addEventListener('click', () => {
 });
 
 
-const cardDeletePopup = new PopupWithConfirmation('.popupDeleteCard', () => {
+const cardDeletePopup = new PopupWithConfirmation('.popupDeleteCard', (card) => {
     cardDeletePopup.renderLoading(true);
+    console.log(card)
+    console.log(card.deleteCard())
     api.deleteCard(cardDeletePopup.cardId)
         .then(() => {
             card.deleteCard();
+            cardDeletePopup.close();
         })
         .catch(console.log)
         .finally(() => {
             cardDeletePopup.renderLoading(false);
-            cardDeletePopup.close();
         });
 })
 cardDeletePopup.setEventListeners();
